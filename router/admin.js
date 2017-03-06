@@ -3,14 +3,10 @@
  */
 var express = require('express');
 
-var fs = require('fs');
-
 var adminRouter = module.exports = express.Router();
 
-adminRouter.get('/user', function (req, res) {
-    res.send('后台首页');
-});
+var adminCtrl = require('../controller/admin');
 
-adminRouter.get('/adminblog', function (req, res) {
-    res.send('后台的管理');
-});
+adminRouter.get('/user', adminCtrl.getindex);
+
+adminRouter.get('/adminblog', adminCtrl.getblog);
