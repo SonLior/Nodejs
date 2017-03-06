@@ -6,12 +6,12 @@ var fs = require('fs');
 
 var app = express();
 
-//var router = express.Router();
+var router = express.Router();
 
 //第一个参数是路径. 默认是 '/'
 app.use('/statics', express.static('statics'));
 
-app.get('/', function (req, res) {
+router.get('/', function (req, res) {
 
     fs.readFile('./views/index.html', 'utf8', function (err, data) {
         res.send(data);
@@ -20,11 +20,15 @@ app.get('/', function (req, res) {
 });
 
 
-app.get('/blog', function (req, res) {
+router.get('/blog', function (req, res) {
     fs.readFile('./views/post.html', 'utf8', function (err, data) {
         res.send(data);
     });
 });
+
+
+//使用路由
+app.use('/', router);
 
 
 
